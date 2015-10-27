@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ffrk_exp</class>
+ <widget class="QWidget" name="ffrk_exp">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>426</width>
+    <height>38</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>FFRK Experience Points Calculator</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <item>
+    <widget class="QLineEdit" name="level_input">
+     <property name="maximumSize">
+      <size>
+       <width>51</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="placeholderText">
+      <string>From lvl</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="level_output">
+     <property name="maximumSize">
+      <size>
+       <width>41</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="placeholderText">
+      <string>To lvl</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="exp_input">
+     <property name="maximumSize">
+      <size>
+       <width>113</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="placeholderText">
+      <string>Current Exp</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="tyro_check">
+     <property name="maximumSize">
+      <size>
+       <width>45</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Tyro</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="exp_output">
+     <property name="text">
+      <string>Exp needed:</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
