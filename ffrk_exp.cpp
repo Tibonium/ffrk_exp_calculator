@@ -32,11 +32,12 @@ void ffrk_exp::read_data()
     QFile fi_tyro("exp_table_tyro") ;
     fi_tyro.open( QFile::ReadOnly ) ;
     if( fi_tyro.exists() ) {
+        int lvl = 1 ;
         QTextStream tyro_exp( &fi_tyro ) ;
         while( !tyro_exp.atEnd() ) {
-            QStringList line = tyro_exp.readLine().split(",") ;
+            QString exp = tyro_exp.readLine() ;
             std::pair<map_type::iterator, bool> result =
-                    _tyro.insert( std::make_pair(line[0].toInt(), line[1].toInt()) ) ;
+                    _tyro.insert( std::make_pair(lvl++, exp.toInt()) ) ;
             if( !result.second ) {
                 /** Failed to insert into map **/
             }
@@ -51,11 +52,12 @@ void ffrk_exp::read_data()
     QFile fi_other("exp_table") ;
     fi_other.open( QFile::ReadOnly ) ;
     if( fi_other.exists() ) {
+        int lvl = 1 ;
         QTextStream general_exp( &fi_other ) ;
         while( !general_exp.atEnd() ) {
-            QStringList line = general_exp.readLine().split(",") ;
+            QString exp = general_exp.readLine() ;
             std::pair<map_type::iterator, bool> result =
-                    _general.insert( std::make_pair(line[0].toInt(), line[1].toInt()) ) ;
+                    _general.insert( std::make_pair(lvl++, exp.toInt()) ) ;
             if( !result.second ) {
                 /** Failed to insert into map **/
             }
@@ -85,12 +87,13 @@ void ffrk_exp::update_exp_needed()
         map_type::iterator It = curr->find( _current_level ) ;
         map_type::iterator It_end = curr->find( _desired_level ) ;
         int exp = 0 ;
-        while( It != It_end ) {
+        while( true ) {
             exp += It->second ;
+            if( It == It_end ) break ;
             It++ ;
         }
         exp -= _current_exp ;
-        tmp += QString::number( exp ) ;
+        tmp += QLocale(QLocale::English).toString(double(exp), 'f', 0) ;
     } else {
         tmp += "N/A" ;
     }
@@ -109,6 +112,7 @@ void ffrk_exp::on_tyro_check_stateChanged(int arg1)
     } else {
         _tyro_exp = false ;
     }
+    update_exp_needed() ;
 }
 
 /**
@@ -118,6 +122,7 @@ void ffrk_exp::on_level_input_textChanged(const QString &arg1)
 {
     _current_level = std::max(1, arg1.toInt()) ;
     ui->level_input->setText( QString::number(_current_level) ) ;
+    _current_level++ ;
     update_exp_needed() ;
 }
 
