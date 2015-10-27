@@ -32,6 +32,10 @@ private slots:
 
     void on_exp_input_textChanged(const QString &arg1);
 
+    void on_party_size_textChanged(const QString &arg1);
+
+    void on_exp_run_textChanged(const QString &arg1);
+
 private:
 
     typedef std::map<int,int>       map_type ;
@@ -46,6 +50,10 @@ private:
     int _desired_level ;
     int _current_exp ;
     void update_exp_needed() ;
+    int _party_size ;
+    int _run_exp ;
+    int _absolute_exp ;
+    void update_exp_runs() ;
 };
 
 #endif // FFRK_EXP_H

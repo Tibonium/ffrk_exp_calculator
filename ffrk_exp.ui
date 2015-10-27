@@ -6,72 +6,113 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>426</width>
-    <height>38</height>
+    <width>437</width>
+    <height>68</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>FFRK Experience Points Calculator</string>
   </property>
-  <layout class="QHBoxLayout" name="horizontalLayout">
+  <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QLineEdit" name="level_input">
-     <property name="maximumSize">
-      <size>
-       <width>51</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="placeholderText">
-      <string>From lvl</string>
-     </property>
-    </widget>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLineEdit" name="level_input">
+       <property name="maximumSize">
+        <size>
+         <width>51</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="placeholderText">
+        <string>From lvl</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="level_output">
+       <property name="maximumSize">
+        <size>
+         <width>41</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="placeholderText">
+        <string>To lvl</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="exp_input">
+       <property name="maximumSize">
+        <size>
+         <width>113</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="placeholderText">
+        <string>Exp to level</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="tyro_check">
+       <property name="maximumSize">
+        <size>
+         <width>45</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Tyro</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="exp_output">
+       <property name="text">
+        <string>Exp needed:</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
    <item>
-    <widget class="QLineEdit" name="level_output">
-     <property name="maximumSize">
-      <size>
-       <width>41</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="placeholderText">
-      <string>To lvl</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLineEdit" name="exp_input">
-     <property name="maximumSize">
-      <size>
-       <width>113</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="placeholderText">
-      <string>Current Exp</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QCheckBox" name="tyro_check">
-     <property name="maximumSize">
-      <size>
-       <width>45</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="text">
-      <string>Tyro</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLabel" name="exp_output">
-     <property name="text">
-      <string>Exp needed:</string>
-     </property>
-    </widget>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLineEdit" name="party_size">
+       <property name="maximumSize">
+        <size>
+         <width>61</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="placeholderText">
+        <string>Party size</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="exp_run">
+       <property name="maximumSize">
+        <size>
+         <width>113</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="placeholderText">
+        <string>Exp per run</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="number_runs">
+       <property name="text">
+        <string>Number of runs:</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>

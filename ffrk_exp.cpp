@@ -7,16 +7,21 @@ ffrk_exp::ffrk_exp(QWidget *parent) :
     _tyro_exp(false),
     _current_level(-1),
     _desired_level(-1),
-    _current_exp(0)
+    _current_exp(0),
+    _party_size(1),
+    _run_exp(0),
+    _absolute_exp(-1)
 {
     ui->setupUi(this) ;
 
     read_data() ;
     QIntValidator *exp_valid = new QIntValidator(0, 20000000) ;
+    ui->exp_run->setValidator( exp_valid ) ;
     ui->exp_input->setValidator( exp_valid ) ;
     QIntValidator *lvl_valid = new QIntValidator(1, _tyro.size()) ;
     ui->level_input->setValidator( lvl_valid ) ;
     ui->level_output->setValidator( lvl_valid ) ;
+    ui->party_size->setValidator( new QIntValidator(1,5) ) ;
 }
 
 ffrk_exp::~ffrk_exp()
@@ -86,18 +91,22 @@ void ffrk_exp::update_exp_needed()
         }
         map_type::iterator It = curr->find( _current_level ) ;
         map_type::iterator It_end = curr->find( _desired_level ) ;
-        int exp = 0 ;
+        int exp = _current_exp ;
+        if( 0 < exp ) {
+            It++ ;
+        }
         while( true ) {
             exp += It->second ;
             if( It == It_end ) break ;
             It++ ;
         }
-        exp -= _current_exp ;
+        _absolute_exp = exp ;
         tmp += QLocale(QLocale::English).toString(double(exp), 'f', 0) ;
     } else {
         tmp += "N/A" ;
     }
     ui->exp_output->setText( tmp ) ;
+    update_exp_runs() ;
 }
 
 /**
@@ -143,4 +152,36 @@ void ffrk_exp::on_exp_input_textChanged(const QString &arg1)
 {
     _current_exp = arg1.toInt() ;
     update_exp_needed() ;
+}
+
+/**
+ * Updates the estimate number of runs to complete the requested level
+ */
+void ffrk_exp::update_exp_runs()
+{
+    if( _absolute_exp < 0 || _party_size < 1 || _run_exp < 1 ) {
+        return ;
+    }
+    double runs = _absolute_exp * double(_party_size) / double(_run_exp) ;
+    QString tmp("Number of runs: ") ;
+    tmp += QString::number(runs) ;
+    ui->number_runs->setText( tmp ) ;
+}
+
+/**
+ * Sets the current party size, divides the exp per run
+ */
+void ffrk_exp::on_party_size_textChanged(const QString &arg1)
+{
+    _party_size = arg1.toInt() ;
+    update_exp_runs() ;
+}
+
+/**
+ * Sets the current exp per run
+ */
+void ffrk_exp::on_exp_run_textChanged(const QString &arg1)
+{
+    _run_exp = arg1.toInt() ;
+    update_exp_runs() ;
 }
